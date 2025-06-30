@@ -53,13 +53,13 @@ Passo a Passo
     Bash
 
 # Navegue até a pasta do Herd
-cd ~/Herd
+    cd ~/Herd
 
 # Clone o repositório
-git clone https://github.com/Baroli03/processo-seletivo-autogestor.git
+    git clone https://github.com/Baroli03/processo-seletivo-autogestor.git
 
 # Entre na pasta do projeto
-cd processo-seletivo-autogestor
+    cd processo-seletivo-autogestor
 
 Nota: Se você configurou o Herd para monitorar uma pasta diferente, navegue até ela.
 
@@ -67,13 +67,13 @@ Instalar Dependências
 Instale as dependências do PHP com o Composer. O arquivo .env será criado automaticamente nesta etapa.
 Bash
 
-composer install
+    composer install
 
 Gerar a Chave da Aplicação
 Este passo é crucial para a segurança da sua aplicação.
 Bash
 
-php artisan key:generate
+    php artisan key:generate
 
 Configurar o Banco de Dados
 a. Abra o DBngin (ou seu gerenciador de banco de dados) e inicie o serviço do MySQL.
@@ -81,18 +81,18 @@ b. Crie um novo banco de dados. Nomeie-o, por exemplo, autogestor_db.
 c. Abra o arquivo .env e atualize as variáveis do banco de dados:
 Snippet de código
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=autogestor_db
-DB_USERNAME=root
-DB_PASSWORD=SUA_SENHA_ROOT_AQUI
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=autogestor_db
+    DB_USERNAME=root
+    DB_PASSWORD=SUA_SENHA_ROOT_AQUI
 
 Executar as Migrações e Popular o Banco
 Este único comando irá criar todas as tabelas e já populará o banco com os dados iniciais necessários para teste (usuários, produtos, etc.), pois os Seeders já estão configurados para rodar junto com as migrações.
 Bash
 
-php artisan migrate --seed
+    php artisan migrate --seed
 
 Compilar os Assets de Front-end
 Instale as dependências de front-end e compile os arquivos CSS e JS.
@@ -108,6 +108,6 @@ Se você seguiu o Passo 1 e está usando Laravel Herd, o projeto já estará dis
 Alternativamente, você pode usar o servidor de desenvolvimento integrado do Artisan:
 Bash
 
-php artisan serve
+    php artisan serve
 
 E acessar a aplicação em http://127.0.0.1:8000.
