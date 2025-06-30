@@ -10,7 +10,7 @@ Um sistema web completo para gerenciamento de produtos, categorias e marcas, con
 -   **Sistema de Permissões Detalhado:**
     -   **Administrador:** Possui uma visão global e pode gerenciar todos os usuários e suas respectivas permissões de acesso.
     -   **Gestor:** Usuário não-administrador com acesso a painéis de consulta específicos (produtos, categorias e/ou marcas) de acordo com as permissões definidas pelo admin.
-    -   **Usuário comum** Acesso as funções básicas do programa
+    -   **Usuário comum** Acesso as funções básicas do programa 
 -   **Interface Moderna e Responsiva:** Todas as telas, dos formulários às tabelas de dados, foram estilizadas para oferecer uma experiência de usuário limpa e profissional.
 
 ## 🛠️ Ambiente e Ferramentas Utilizadas
@@ -37,7 +37,10 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
 ### Passo a Passo
 
 1.  **Clonar o Repositório na Pasta do Herd**
-    Para que o Laravel Herd detecte seu projeto e crie a URL `.test` automaticamente, você precisa clonar o repositório dentro da pasta que ele monitora (por padrão, `~/Herd`).
+    Para que o Laravel Herd detecte seu projeto e crie a URL `.test` automaticamente, é crucial que a pasta do projeto esteja diretamente dentro do diretório que o Herd monitora (por padrão, `~/Herd`).
+
+    A estrutura final deve ser: `~/Herd/processo-seletivo-autogestor`
+
     ```bash
     # Navegue até a pasta do Herd
     cd ~/Herd
