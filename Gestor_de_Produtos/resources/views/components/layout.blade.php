@@ -7,43 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title}} - Gestor de Produto</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <ul>
-                <a href="/"><li>Produtos</li></a>
-                <a href="/brands"><li>Marcas</li></a>
-                <a href="/categories"><li>Categorias</li></a>
-                <a href="https://autogestor.net/contato/"><li>Fale Conosco</li><span></span></a>
+            <ul class="rubik">
+                <div class="nav_item">
+                    <li><a href="/">Produtos</a></li>
+                    <li><a href="/brands">Marcas</a></li>
+                    <li><a href="/categories">Categorias</a></li>
+                    <li><a href="https://autogestor.net/contato/">Fale Conosco<span></span></a></li>
+                </div>
 
                 @auth
-                    <a href="{{ route('dashboard') }}"><li>Meu Dashboard</li></a>
+                    <div class="login-box">
+                        <li><a href="{{ route('dashboard') }}">Meu Dashboard</a></li>
 
-                    @if (Auth::user()->is_admin)
-                        <a href="{{ route('admin.manage_users') }}"><li>Gerenciar Usuários (Admin)</li></a>
-                    @else
-                        @if (Auth::user()->can_manage_products)
-                            <a href="{{ route('management.products') }}"><li>Gestão de Produtos</li></a>
+                        @if (Auth::user()->is_admin)
+                            <li><a href="{{ route('admin.manage_users') }}">Gerenciar Usuários (Admin)</a></li>
+                        @else
+                            @if (Auth::user()->can_manage_products)
+                                <li><a href="{{ route('management.products') }}">Gestão de Produtos</a></li>
+                            @endif
+                            @if (Auth::user()->can_manage_categories)
+                                <li><a href="{{ route('management.categories') }}">Gestão de Categorias</a></li>
+                            @endif
+                            @if (Auth::user()->can_manage_brands)
+                                <li><a href="{{ route('management.brands') }}">Gestão de Marcas</a></li>
+                            @endif
                         @endif
-                        @if (Auth::user()->can_manage_categories)
-                            <a href="{{ route('management.categories') }}"><li>Gestão de Categorias</li></a>
-                        @endif
-                        @if (Auth::user()->can_manage_brands)
-                            <a href="{{ route('management.brands') }}"><li>Gestão de Marcas</li></a>
-                        @endif
-                    @endif
-
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0;">Sair</button>
-                        </form>
-                    </li>
-                @else 
-                    <a href="{{ route('login') }}"><li>Fazer Login</li></a>
-                    <a href="{{ route('register') }}"><li>Registrar</li></a>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-logout">Sair</button>
+                            </form>
+                        </li>
+                    </div>
+                @else
+                    <div class="login-box">
+                        <li><a href="{{ route('login') }}">Fazer Login</a></li>
+                        <li><a href="{{ route('register') }}" class="button">Registrar</a></li>
+                    </div>
                 @endauth
             </ul>
         </nav>

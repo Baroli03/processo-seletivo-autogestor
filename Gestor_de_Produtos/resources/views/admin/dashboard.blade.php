@@ -16,7 +16,7 @@
         <a href="{{ route('dashboard') }}">Voltar para Meu Dashboard</a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit">Sair</button>
+            <button type="submit" class="btn btn-logout">Sair</button>
         </form>
     </div>
 </x-layout>

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -77,6 +80,21 @@ class UserController extends Controller
 
         Auth::login($user);
         return redirect(route('dashboard'));
+    }
+     public function destroy(User $user)
+    {
+        
+        if (!Auth::user()->is_admin) {
+            return redirect()->route('dashboard')->with('error', 'Acesso negado.');
+        }
+
+        if ($user->id === Auth::id()) {
+            return redirect()->route('admin.manage_users')->with('error', 'Você não pode excluir sua própria conta.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('admin.manage_users')->with('success', 'Usuário "' . $user->name . '" excluído com sucesso!');
     }
 
 
@@ -148,27 +166,37 @@ class UserController extends Controller
     }
 
 
-    public function productManagementTest()
+   public function productManagementTest()
     {
         if (!Auth::check() || Auth::user()->is_admin || !Auth::user()->can_manage_products) {
-             return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de produtos.');
+            return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de produtos.');
         }
-        return view('product_management_test');
+
+      
+        $products = Product::with('brand', 'category')->orderBy('name')->get();
+
+        return view('product_management_test', ['products' => $products]);
     }
 
-    public function categoryManagementTest()
+public function categoryManagementTest()
     {
         if (!Auth::check() || Auth::user()->is_admin || !Auth::user()->can_manage_categories) {
-             return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de categorias.');
+            return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de categorias.');
         }
-        return view('category_management_test');
+
+        $categories = Category::withCount('products')->orderBy('name')->get();
+
+        return view('category_management_test', ['categories' => $categories]);
     }
 
-    public function brandManagementTest()
+public function brandManagementTest()
     {
         if (!Auth::check() || Auth::user()->is_admin || !Auth::user()->can_manage_brands) {
-             return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de marcas.');
+            return redirect()->route('dashboard')->with('error', 'Acesso restrito. Administradores não acessam esta área de gestão de marcas.');
         }
-        return view('brand_management_test');
+
+        $brands = Brand::withCount('products')->orderBy('name')->get();
+
+        return view('brand_management_test', ['brands' => $brands]);
     }
 }
