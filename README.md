@@ -39,7 +39,7 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
 1.  **Clonar o Repositório na Pasta do Herd**
     Para que o Laravel Herd detecte seu projeto e crie a URL `.test` automaticamente, é crucial que a pasta do projeto esteja diretamente dentro do diretório que o Herd monitora (por padrão, `~/Herd`).
 
-    A estrutura final deve ser: `~/Herd/processo-seletivo-autogestor`
+    A estrutura final deve ser: `~/Herd/Gestor_de_Produtos`
 
     ```bash
     # Navegue até a pasta do Herd
@@ -49,7 +49,7 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
     git clone [https://github.com/Baroli03/processo-seletivo-autogestor.git](https://github.com/Baroli03/processo-seletivo-autogestor.git)
 
     # Entre na pasta do projeto
-    cd processo-seletivo-autogestor
+    cd Gestor_de_Produtos
     ```
     *Nota: Se você configurou o Herd para monitorar uma pasta diferente, navegue até ela.*
 
