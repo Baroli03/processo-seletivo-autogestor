@@ -48,11 +48,20 @@ Pré-requisitos
 
 Passo a Passo
 
-    Clonar o Repositório
+    Clonar o Repositório na Pasta do Herd
+    Para que o Laravel Herd detecte seu projeto e crie a URL .test automaticamente, você precisa clonar o repositório dentro da pasta que ele monitora (por padrão, ~/Herd).
     Bash
 
+# Navegue até a pasta do Herd
+cd ~/Herd
+
+# Clone o repositório
 git clone https://github.com/Baroli03/processo-seletivo-autogestor.git
+
+# Entre na pasta do projeto
 cd processo-seletivo-autogestor
+
+Nota: Se você configurou o Herd para monitorar uma pasta diferente, navegue até ela.
 
 Instalar Dependências
 Instale as dependências do PHP com o Composer. O arquivo .env será criado automaticamente nesta etapa.
@@ -79,17 +88,11 @@ DB_DATABASE=autogestor_db
 DB_USERNAME=root
 DB_PASSWORD=SUA_SENHA_ROOT_AQUI
 
-Executar as Migrações
-Este comando irá criar todas as tabelas necessárias no seu banco de dados.
+Executar as Migrações e Popular o Banco
+Este único comando irá criar todas as tabelas e já populará o banco com os dados iniciais necessários para teste (usuários, produtos, etc.), pois os Seeders já estão configurados para rodar junto com as migrações.
 Bash
 
-php artisan migrate
-
-(Opcional) Popular o Banco de Dados
-Se você criou Seeders para popular o banco com dados iniciais (como um usuário administrador), rode o comando:
-Bash
-
-php artisan db:seed
+php artisan migrate --seed
 
 Compilar os Assets de Front-end
 Instale as dependências de front-end e compile os arquivos CSS e JS.
@@ -100,7 +103,7 @@ Bash
 
 ධ Executando a Aplicação
 
-Se você está usando Laravel Herd, o projeto já estará disponível automaticamente em uma URL como http://processo-seletivo-autogestor.test. Basta acessar pelo seu navegador.
+Se você seguiu o Passo 1 e está usando Laravel Herd, o projeto já estará disponível automaticamente em uma URL como http://processo-seletivo-autogestor.test. Basta acessar pelo seu navegador.
 
 Alternativamente, você pode usar o servidor de desenvolvimento integrado do Artisan:
 Bash
