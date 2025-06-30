@@ -16,6 +16,8 @@ Um sistema web completo para gerenciamento de produtos, categorias e marcas, con
 
         Gestor: Usuário não-administrador com acesso a painéis de consulta específicos (produtos, categorias e/ou marcas) de acordo com as permissões definidas pelo admin.
 
+        Usuario comum: Acesso as funções básicas do programa
+
     Interface Moderna e Responsiva: Todas as telas, dos formulários às tabelas de dados, foram estilizadas para oferecer uma experiência de usuário limpa e profissional.
 
 🛠️ Ambiente e Ferramentas Utilizadas
