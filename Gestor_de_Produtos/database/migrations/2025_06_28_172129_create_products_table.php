@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->decimal('price', 8, 2);
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable();
             // Criando relacionamento de Produto com marca e categoria
             // Um pra muitos, onde categoria e marca tem muitos produtos
             $table->foreignId('brand_id')->constrained('brands');
@@ -25,9 +26,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+ 
     public function down(): void
     {
         Schema::dropIfExists('products');

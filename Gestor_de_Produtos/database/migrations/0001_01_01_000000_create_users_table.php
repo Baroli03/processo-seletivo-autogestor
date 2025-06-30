@@ -18,10 +18,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
-            $table->rememberToken(); 
+            $table->boolean('can_manage_products')->default(false);
+            $table->boolean('can_manage_categories')->default(false);
+            $table->boolean('can_manage_brands')->default(false);
+            $table->rememberToken();
             $table->timestamps();
         });
-
     }
 
     /**

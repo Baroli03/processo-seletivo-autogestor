@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-
+use Database\Seeders\UserSeeder;    // Importe seu UserSeeder
+use Database\Seeders\BrandSeeder;   // Importe BrandSeeder
+use Database\Seeders\CategorySeeder; // Importe CategorySeeder
+use Database\Seeders\ProductSeeder; // Importe ProductSeeder
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,28 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // NOTA IMPORTANTE: A ordem importa por causa das chaves estrangeiras!
+        // Marcas e Categorias devem ser criadas ANTES dos Produtos.
+        // Usuários podem ser criados a qualquer momento, mas é bom tê-los para logs/testes.
 
-        // Criando um Usuario admin e senha password
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'), 
-            'is_admin' => true, 
-        ]);
-        // Criando um Usuario normal login Test e senha password
-        User::factory()->create([
-            'name' => 'Test',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'), 
-            'is_admin' => false, 
-        ]);
-
-        // aqui fazemos rodar os seeders
         $this->call([
-            BrandSeeder::class,
-            CategorySeeder::class,
-            ProductSeeder::class,
+            BrandSeeder::class,    // Popula a tabela 'brands'
+            CategorySeeder::class, // Popula a tabela 'categories'
+            UserSeeder::class,     // Popula a tabela 'users' com perfis de teste
+            ProductSeeder::class,  // Popula a tabela 'products' (que depende de marcas e categorias)
         ]);
     }
 }

@@ -9,8 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    // fillable serve para indicar quais dados podem ser criados pelo model
+    // hasfactory serve para indicar que essa classe é uma fabrica 
     use HasFactory, Notifiable;
+    // fillable serve para indicar quais dados podem ser criados pelo model
     protected $fillable = [
         'name',
         'email',
